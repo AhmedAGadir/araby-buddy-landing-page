@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// import axios from "axios";
 
 function Form() {
 	const [value, setValue] = useState("");
@@ -7,16 +8,18 @@ function Form() {
 	const submit = (e) => {
 		e.preventDefault();
 
-		fetch("/.netlify/functions/subscribe", {
-			method: "POST",
+		fetch("http://localhost:8888/.netlify/functions/subscribe", {
+			method: "GET",
 			body: JSON.stringify({ email: value }),
 		})
 			.then((response) => {
-				if (response.ok) {
-					return response.json();
-				} else {
-					throw new Error("Something went wrong...");
-				}
+				return response.json();
+				// console.log("response", response);
+				// if (response.ok) {
+				// 	return response.json();
+				// } else {
+				// 	throw new Error("Something went wrong...");
+				// }
 			})
 			.then(() => {
 				setStatus("SUCCESS");
@@ -26,6 +29,24 @@ function Form() {
 				setStatus("ERROR");
 				console.log(error);
 			});
+
+		// axios
+		// 	.post("/.netlify/functions/subscribe", { email: value })
+		// 	.then((response) => {
+		// 		if (response.status === 200) {
+		// 			return response.data;
+		// 		} else {
+		// 			throw new Error("Something went wrong...");
+		// 		}
+		// 	})
+		// 	.then(() => {
+		// 		setStatus("SUCCESS");
+		// 		setValue("");
+		// 	})
+		// 	.catch((error) => {
+		// 		setStatus("ERROR");
+		// 		console.log(error);
+		// 	});
 	};
 	return (
 		<>
@@ -36,7 +57,12 @@ function Form() {
 				action="src/routes/success"
 				name="subscribe"
 				data-netlify="true"
+				data-netlify-honeypot="bot-field"
 			>
+				<input type="hidden" name="form-name" value="subscribe" />
+				<div hidden>
+					<input name="bot-field" />
+				</div>
 				<div className="relative flex-1">
 					<div className="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
 						<svg
@@ -54,7 +80,7 @@ function Form() {
 						type="email"
 						name="email"
 						id="email"
-						className="font-poppins font-light pl-12 shadow-md shadow-blue-500/50 block w-full rounded-xl border-0 px-4 py-4 md:text-md text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus-visible:outline focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-7"
+						className="font-poppins font-light pl-12 shadow-md shadow-blue-500/50 block w-full rounded-xl border-0 px-4 py-4 md:text-md text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus-visible:outline focus:ring-2 focus:ring-inset focus:ring-indigo-600 text-sm sm:text-md sm:leading-7"
 						placeholder="Enter your email"
 						value={value}
 						onChange={(e) => setValue(e.target.value)}
@@ -64,7 +90,7 @@ function Form() {
 				<button
 					onClick={submit}
 					type="submit"
-					className="font-poppins font-medium shadow-lg text-white bg-gradient-to-br from-purple-600 to-blue-500 px-6 py-4 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800  rounded-lg text-md text-center mt-3 w-full sm:w-auto sm:mt-0"
+					className="font-poppins font-medium shadow-lg text-white bg-gradient-to-br from-purple-600 to-blue-500 px-6 py-4 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800  rounded-lg text-sm sm:text-md text-center mt-4 w-full sm:w-auto sm:mt-0"
 				>
 					Subscribe
 				</button>

@@ -14,7 +14,7 @@ const Success = () => {
 				<div className="inline-block">
 					<a
 						href="/"
-						className="font-medium text-indigo-500 flex items-center space-x-2"
+						className="font-medium text-indigo-500 flex items-center space-x-1"
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
