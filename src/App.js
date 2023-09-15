@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import LandingPage from "./routes/LandingPage";
+import ErrorPage from "./routes/ErrorPage";
+import PrivacyPolicy from "./routes/PrivacyPolicy";
+import TermsAndConditions from "./routes/TermsAndConditions";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const router = createBrowserRouter([
+		{
+			path: "/",
+			element: <LandingPage />,
+			errorElement: <ErrorPage />,
+		},
+		{
+			path: "/privacy-policy",
+			element: <PrivacyPolicy />,
+		},
+		{
+			path: "/terms-and-conditions",
+			element: <TermsAndConditions />,
+		},
+	]);
+
+	return <RouterProvider router={router} />;
 }
 
 export default App;
