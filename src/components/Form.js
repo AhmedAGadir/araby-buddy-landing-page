@@ -33,6 +33,7 @@ function Form() {
 				className="sm:flex sm:justify-center sm:items-center sm:space-x-4 mt-4 mb-4 relative"
 				onSubmit={submit}
 				method="POST"
+				action="src/routes/success"
 				name="subscribe"
 				data-netlify="true"
 			>
@@ -67,11 +68,11 @@ function Form() {
 				>
 					Subscribe
 				</button>
-				{status === "SUCCESS" && (
+				{/* {status === "SUCCESS" && (
 					<p className="text-green-500 text-center mt-2 block absolute top-full">
 						Thanks for subscribing! 🎉
 					</p>
-				)}
+				)} */}
 				{status === "ERROR" && (
 					<p className="text-red-500 text-center mt-3 block absolute top-full">
 						Oops, something went wrong...

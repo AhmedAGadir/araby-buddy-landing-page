@@ -3,6 +3,7 @@ import LandingPage from "./routes/LandingPage";
 import ErrorPage from "./routes/ErrorPage";
 import PrivacyPolicy from "./routes/PrivacyPolicy";
 import TermsAndConditions from "./routes/TermsAndConditions";
+import Success from "./routes/Success";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 function App() {
@@ -19,6 +20,10 @@ function App() {
 		{
 			path: "/terms-and-conditions",
 			element: <TermsAndConditions />,
+		},
+		{
+			path: "/success",
+			element: <Success />,
 		},
 	]);
 
