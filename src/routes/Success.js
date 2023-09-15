@@ -4,17 +4,17 @@ const Success = () => {
 	return (
 		<div className="mt-10 px-3 font-poppins mx-auto max-w-5xl text-center">
 			<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 text-slate-900">
-				Thank you for subscribing!
+				Thanks for subscribing! 🎉
 			</h2>
 			<main>
 				<p className="text-lg text-slate-500 mb-5">
-					We'll send you an email when we launch. In the meantime here a fun
-					video to watch.
+					We'll send you an email when we launch.
+					{/* In the meantime here a fun video to watch. */}
 				</p>
 				<div className="inline-block">
 					<a
 						href="/"
-						className="font-medium text-indigo-500 flex items-center space-x-1"
+						className="font-medium text-indigo-500 hover:text-indigo-400 flex items-center space-x-1"
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
