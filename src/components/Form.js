@@ -1,51 +1,37 @@
-// import React, { useState } from "react";
-// import axios from "axios";
-
-// const defaultStatus = { status: "", message: "" };
+import React, { useState, useRouter } from "react";
+import axios from "axios";
 
 function Form() {
-	// const [value, setValue] = useState("");
-	// const [status, setStatus] = useState({ ...defaultStatus });
+	const [error, setError] = useState(null);
 
-	// const submit = (e) => {
-	// e.preventDefault();
-	// if (!value) return;
-	// setStatus({ ...defaultStatus });
-	// const url =
-	// 	process.env.NODE_ENV === "development"
-	// 		? process.env.REACT_APP_DEV_NETLIFY_SERVERLESS_ENDPOINT
-	// 		: "";
-	// axios
-	// 	.post(`${url}/.netlify/functions/subscribe`, { email: value })
-	// 	.then((response) => {
-	// 		if (response.status === 200) {
-	// 			return response.data;
-	// 		} else {
-	// 			throw new Error("Something went wrong...");
-	// 		}
-	// 	})
-	// 	.then((data) => {
-	// 		setStatus({ status: "SUCCESS", message: data.message });
-	// 		setValue("");
-	// 	})
-	// 	.catch((error) => {
-	// 		setStatus({
-	// 			status: "ERROR",
-	// 			message: error.message,
-	// 		});
-	// 		console.log(error);
-	// 	});
-	// };
+	const router = useRouter();
 
-	// console.log("status", status);
+	const submit = (event) => {
+		event.preventDefault();
+
+		const myForm = event.target;
+		const formData = new FormData(myForm);
+
+		if (formData.get("email") === "") {
+			return;
+		}
+
+		const params = new URLSearchParams(formData);
+		axios.post(myForm.action, params).then((response) => {
+			if (response.status === 200) {
+				router.push("/success");
+			} else {
+				setError("Something went wrong...");
+			}
+		});
+	};
 
 	return (
 		<>
 			<form
 				className="sm:flex sm:justify-center sm:items-center sm:space-x-4 mt-4 mb-4 relative"
-				// onSubmit={submit}
+				onSubmit={submit}
 				method="POST"
-				action="/success"
 				name="subscribe"
 			>
 				<input type="hidden" name="form-name" value="subscribe" />
@@ -72,28 +58,21 @@ function Form() {
 						required
 						className="font-poppins font-light pl-12 shadow-md shadow-blue-500/50 block w-full rounded-xl border-0 px-4 py-4 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus-visible:outline focus:ring-2 focus:ring-inset focus:ring-indigo-600 text-sm sm:text-md  md:text-lg sm:leading-6"
 						placeholder="Enter your email"
-						// value={value}
-						// onChange={(e) => setValue(e.target.value)}
 					/>
 				</div>
 
 				<button
-					// onClick={submit}
+					onClick={submit}
 					type="submit"
 					className="font-poppins font-medium shadow-lg text-white bg-gradient-to-br from-purple-600 to-blue-500 px-6 py-4 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800  rounded-lg text-sm sm:text-md md:text-lg text-center mt-4 w-full sm:w-auto sm:mt-0"
 				>
 					Subscribe
 				</button>
-				{/* {status.status === "SUCCESS" && (
-					<p className="text-green-500 text-center mt-2 block sm:absolute sm:top-full text-sm sm:text-lg sm:mt-4">
-						{"Thanks for subscribing! 🎉"}
-					</p>
-				)} */}
-				{/* {status.status === "ERROR" && (
+				{error && (
 					<p className="text-red-500 text-center mt-3 block sm:absolute sm:top-full text-sm sm:text-lg sm:mt-4">
 						{"Oops, something went wrong..."}
 					</p>
-				)} */}
+				)}
 			</form>
 		</>
 	);
