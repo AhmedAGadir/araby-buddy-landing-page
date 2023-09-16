@@ -51,9 +51,6 @@ function Form() {
 				method="POST"
 				action="src/routes/success"
 				name="subscribe"
-				netlify
-				data-netlify="true"
-				data-netlify-honeypot="bot-field"
 			>
 				<input type="hidden" name="form-name" value="subscribe" />
 				<div hidden>
@@ -91,11 +88,11 @@ function Form() {
 				>
 					Subscribe
 				</button>
-				{status.status === "SUCCESS" && (
+				{/* {status.status === "SUCCESS" && (
 					<p className="text-green-500 text-center mt-2 block sm:absolute sm:top-full text-sm sm:text-lg sm:mt-4">
 						{"Thanks for subscribing! 🎉"}
 					</p>
-				)}
+				)} */}
 				{status.status === "ERROR" && (
 					<p className="text-red-500 text-center mt-3 block sm:absolute sm:top-full text-sm sm:text-lg sm:mt-4">
 						{"Oops, something went wrong..."}

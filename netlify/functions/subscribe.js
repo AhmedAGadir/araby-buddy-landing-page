@@ -1,56 +1,60 @@
-const serverless = require("serverless-http");
+// using netlify forms instead of serverless functions + mongodb
+// keeping the file incase i want to use it later
+module.exports.handler = async (event, context) => {};
 
-const express = require("express");
-const app = express();
+// const serverless = require("serverless-http");
 
-const dotenv = require("dotenv");
-dotenv.config();
+// const express = require("express");
+// const app = express();
 
-const bodyParser = require("body-parser");
-app.use(bodyParser.json());
+// const dotenv = require("dotenv");
+// dotenv.config();
 
-const cors = require("cors");
-const corsOptions = {
-	origin:
-		/https?:\/\/(www\.)?([a-z0-9]+--arabybuddylanding\.netlify\.app|arabybuddylanding\.netlify\.app|arabybuddy\.com)/,
-};
+// const bodyParser = require("body-parser");
+// app.use(bodyParser.json());
 
-app.use(cors(corsOptions));
+// const cors = require("cors");
+// const corsOptions = {
+// 	origin:
+// 		/https?:\/\/(www\.)?([a-z0-9]+--arabybuddylanding\.netlify\.app|arabybuddylanding\.netlify\.app|arabybuddy\.com)/,
+// };
 
-const router = express.Router();
+// app.use(cors(corsOptions));
 
-router.post("/", async (req, res) => {
-	const { email } = req.body;
+// const router = express.Router();
 
-	if (!email) {
-		return res.status(400).json({
-			message: "Email is required",
-		});
-	}
+// router.post("/", async (req, res) => {
+// 	const { email } = req.body;
 
-	try {
-		const mongoose = require("mongoose");
+// 	if (!email) {
+// 		return res.status(400).json({
+// 			message: "Email is required",
+// 		});
+// 	}
 
-		await mongoose.connect(process.env.MONGODB_URI, {
-			useNewUrlParser: true,
-			useUnifiedTopology: true,
-		});
+// 	try {
+// 		const mongoose = require("mongoose");
 
-		const Email = require("./models/email.model");
-		const newEmail = new Email({ email });
+// 		await mongoose.connect(process.env.MONGODB_URI, {
+// 			useNewUrlParser: true,
+// 			useUnifiedTopology: true,
+// 		});
 
-		await newEmail.save();
+// 		const Email = require("./models/email.model");
+// 		const newEmail = new Email({ email });
 
-		res.status(200).json({
-			message: "Thanks for subscribing! 🎉",
-		});
-	} catch (error) {
-		res.status(500).json({
-			message: error.message || "Internal Server Error",
-		});
-	}
-});
+// 		await newEmail.save();
 
-app.use("/.netlify/functions/subscribe", router);
+// 		res.status(200).json({
+// 			message: "Thanks for subscribing! 🎉",
+// 		});
+// 	} catch (error) {
+// 		res.status(500).json({
+// 			message: error.message || "Internal Server Error",
+// 		});
+// 	}
+// });
 
-module.exports.handler = serverless(app);
+// app.use("/.netlify/functions/subscribe", router);
+
+// module.exports.handler = serverless(app);
