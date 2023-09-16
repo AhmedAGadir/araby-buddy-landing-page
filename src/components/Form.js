@@ -1,41 +1,41 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 // import axios from "axios";
 
 // const defaultStatus = { status: "", message: "" };
 
 function Form() {
-	const [value, setValue] = useState("");
+	// const [value, setValue] = useState("");
 	// const [status, setStatus] = useState({ ...defaultStatus });
 
-	const submit = (e) => {
-		// e.preventDefault();
-		// if (!value) return;
-		// setStatus({ ...defaultStatus });
-		// const url =
-		// 	process.env.NODE_ENV === "development"
-		// 		? process.env.REACT_APP_DEV_NETLIFY_SERVERLESS_ENDPOINT
-		// 		: "";
-		// axios
-		// 	.post(`${url}/.netlify/functions/subscribe`, { email: value })
-		// 	.then((response) => {
-		// 		if (response.status === 200) {
-		// 			return response.data;
-		// 		} else {
-		// 			throw new Error("Something went wrong...");
-		// 		}
-		// 	})
-		// 	.then((data) => {
-		// 		setStatus({ status: "SUCCESS", message: data.message });
-		// 		setValue("");
-		// 	})
-		// 	.catch((error) => {
-		// 		setStatus({
-		// 			status: "ERROR",
-		// 			message: error.message,
-		// 		});
-		// 		console.log(error);
-		// 	});
-	};
+	// const submit = (e) => {
+	// e.preventDefault();
+	// if (!value) return;
+	// setStatus({ ...defaultStatus });
+	// const url =
+	// 	process.env.NODE_ENV === "development"
+	// 		? process.env.REACT_APP_DEV_NETLIFY_SERVERLESS_ENDPOINT
+	// 		: "";
+	// axios
+	// 	.post(`${url}/.netlify/functions/subscribe`, { email: value })
+	// 	.then((response) => {
+	// 		if (response.status === 200) {
+	// 			return response.data;
+	// 		} else {
+	// 			throw new Error("Something went wrong...");
+	// 		}
+	// 	})
+	// 	.then((data) => {
+	// 		setStatus({ status: "SUCCESS", message: data.message });
+	// 		setValue("");
+	// 	})
+	// 	.catch((error) => {
+	// 		setStatus({
+	// 			status: "ERROR",
+	// 			message: error.message,
+	// 		});
+	// 		console.log(error);
+	// 	});
+	// };
 
 	// console.log("status", status);
 
@@ -43,7 +43,7 @@ function Form() {
 		<>
 			<form
 				className="sm:flex sm:justify-center sm:items-center sm:space-x-4 mt-4 mb-4 relative"
-				onSubmit={submit}
+				// onSubmit={submit}
 				method="POST"
 				action="src/routes/success"
 				name="subscribe"
@@ -72,13 +72,13 @@ function Form() {
 						required
 						className="font-poppins font-light pl-12 shadow-md shadow-blue-500/50 block w-full rounded-xl border-0 px-4 py-4 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus-visible:outline focus:ring-2 focus:ring-inset focus:ring-indigo-600 text-sm sm:text-md  md:text-lg sm:leading-6"
 						placeholder="Enter your email"
-						value={value}
-						onChange={(e) => setValue(e.target.value)}
+						// value={value}
+						// onChange={(e) => setValue(e.target.value)}
 					/>
 				</div>
 
 				<button
-					onClick={submit}
+					// onClick={submit}
 					type="submit"
 					className="font-poppins font-medium shadow-lg text-white bg-gradient-to-br from-purple-600 to-blue-500 px-6 py-4 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800  rounded-lg text-sm sm:text-md md:text-lg text-center mt-4 w-full sm:w-auto sm:mt-0"
 				>
