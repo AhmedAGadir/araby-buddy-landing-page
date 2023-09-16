@@ -1,19 +1,11 @@
 import React from "react";
-import ArabyBuddyLogo from "../assets/arabybuddy.png";
+import GoBack from "../components/GoBack";
 
 const PrivacyPolicy = () => {
 	return (
-		<div className="mt-6 px-3 font-poppins max-w-2xl mx-auto">
-			<header className="">
-				<div>
-					<a href="/">
-						<img
-							src={ArabyBuddyLogo}
-							className="w-16 h-16 mb-3"
-							aria-label="Go back"
-						/>
-					</a>
-				</div>
+		<div className="mt-10 px-3 font-poppins max-w-2xl mx-auto">
+			<GoBack className="mb-3" />
+			<header>
 				<h1 className="text-4xl md:text-5xl font-bold mb-8 text-slate-900">
 					Privacy Policy
 				</h1>
@@ -58,7 +50,7 @@ const PrivacyPolicy = () => {
 					ahmed@gadirlabs.io.
 				</p>
 				<p className="text-sm text-slate-500 mb-6">
-					Last Updated: 15th September 2023
+					Last updated: 15th September 2023
 				</p>
 			</main>
 		</div>
