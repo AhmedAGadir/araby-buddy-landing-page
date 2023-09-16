@@ -1,10 +1,11 @@
-import React, { useState, useRouter } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Form() {
 	const [error, setError] = useState(null);
 
-	const router = useRouter();
+	const navigate = useNavigate();
 
 	const submit = (event) => {
 		event.preventDefault();
@@ -19,7 +20,7 @@ function Form() {
 		const params = new URLSearchParams(formData);
 		axios.post(myForm.action, params).then((response) => {
 			if (response.status === 200) {
-				router.push("/success");
+				navigate("/success");
 			} else {
 				setError("Something went wrong...");
 			}
