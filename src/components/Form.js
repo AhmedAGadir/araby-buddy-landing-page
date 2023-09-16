@@ -10,15 +10,16 @@ function Form() {
 	const submit = (event) => {
 		event.preventDefault();
 
-		const myForm = event.target;
-		const formData = new FormData(myForm);
+		const emailValue = event.target.elements.email.value;
 
-		if (formData.get("email") === "") {
+		if (emailValue === "") {
 			return;
 		}
 
+		const params = new URLSearchParams({ email: emailValue }).toString();
+
 		axios
-			.post("/", new URLSearchParams(formData).toString(), {
+			.post("/", params, {
 				headers: {
 					"Content-Type": "application/x-www-form-urlencoded",
 				},
@@ -68,7 +69,6 @@ function Form() {
 				</div>
 
 				<button
-					onClick={submit}
 					type="submit"
 					className="font-poppins font-medium shadow-lg text-white bg-gradient-to-br from-purple-600 to-blue-500 px-6 py-4 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800  rounded-lg text-sm sm:text-md md:text-lg text-center mt-4 w-full sm:w-auto sm:mt-0"
 				>
