@@ -51,6 +51,7 @@ function Form() {
 				method="POST"
 				action="src/routes/success"
 				name="subscribe"
+				netlify
 				data-netlify="true"
 				data-netlify-honeypot="bot-field"
 			>
