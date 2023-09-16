@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import axios from "axios";
+import axios from "axios";
 
 function Form() {
 	const [value, setValue] = useState("");
@@ -8,18 +8,21 @@ function Form() {
 	const submit = (e) => {
 		e.preventDefault();
 
-		fetch("http://localhost:8888/.netlify/functions/subscribe", {
-			method: "GET",
-			body: JSON.stringify({ email: value }),
-		})
+		if (!value) return;
+
+		const url =
+			process.env.NODE_ENV === "development"
+				? process.env.REACT_APP_DEV_NETLIFY_SERVERLESS_ENDPOINT
+				: process.env.REACT_APP_PROD_NETLIFY_SERVERLESS_ENDPOINT;
+
+		axios
+			.post(`${url}/.netlify/functions/subscribe`, { email: value })
 			.then((response) => {
-				return response.json();
-				// console.log("response", response);
-				// if (response.ok) {
-				// 	return response.json();
-				// } else {
-				// 	throw new Error("Something went wrong...");
-				// }
+				if (response.status === 200) {
+					return response.data;
+				} else {
+					throw new Error("Something went wrong...");
+				}
 			})
 			.then(() => {
 				setStatus("SUCCESS");
@@ -29,24 +32,6 @@ function Form() {
 				setStatus("ERROR");
 				console.log(error);
 			});
-
-		// axios
-		// 	.post("/.netlify/functions/subscribe", { email: value })
-		// 	.then((response) => {
-		// 		if (response.status === 200) {
-		// 			return response.data;
-		// 		} else {
-		// 			throw new Error("Something went wrong...");
-		// 		}
-		// 	})
-		// 	.then(() => {
-		// 		setStatus("SUCCESS");
-		// 		setValue("");
-		// 	})
-		// 	.catch((error) => {
-		// 		setStatus("ERROR");
-		// 		console.log(error);
-		// 	});
 	};
 	return (
 		<>
@@ -94,11 +79,11 @@ function Form() {
 				>
 					Subscribe
 				</button>
-				{/* {status === "SUCCESS" && (
+				{status === "SUCCESS" && (
 					<p className="text-green-500 text-center mt-2 block absolute top-full">
 						Thanks for subscribing! 🎉
 					</p>
-				)} */}
+				)}
 				{status === "ERROR" && (
 					<p className="text-red-500 text-center mt-3 block absolute top-full">
 						Oops, something went wrong...
