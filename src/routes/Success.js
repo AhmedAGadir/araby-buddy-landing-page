@@ -1,5 +1,5 @@
 import React from "react";
-import GoBack from "../components/GoBack";
+// import GoBack from "../components/GoBack";
 
 const Success = () => {
 	return (
