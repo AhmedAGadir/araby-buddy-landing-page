@@ -45,7 +45,7 @@ function Form() {
 				className="sm:flex sm:justify-center sm:items-center sm:space-x-4 mt-4 mb-4 relative"
 				// onSubmit={submit}
 				method="POST"
-				action="src/routes/success"
+				action="/success"
 				name="subscribe"
 			>
 				<input type="hidden" name="form-name" value="subscribe" />
