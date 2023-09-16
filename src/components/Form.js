@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+const defaultStatus = { status: "", message: "" };
+
 function Form() {
 	const [value, setValue] = useState("");
-	const [status, setStatus] = useState("");
+	const [status, setStatus] = useState({ ...defaultStatus });
 
 	const submit = (e) => {
 		e.preventDefault();
 
 		if (!value) return;
 
+		setStatus({ ...defaultStatus });
+
 		const url =
 			process.env.NODE_ENV === "development"
 				? process.env.REACT_APP_DEV_NETLIFY_SERVERLESS_ENDPOINT
-				: process.env.REACT_APP_PROD_NETLIFY_SERVERLESS_ENDPOINT;
+				: "";
 
 		axios
 			.post(`${url}/.netlify/functions/subscribe`, { email: value })
@@ -24,15 +28,21 @@ function Form() {
 					throw new Error("Something went wrong...");
 				}
 			})
-			.then(() => {
-				setStatus("SUCCESS");
+			.then((data) => {
+				setStatus({ status: "SUCCESS", message: data.message });
 				setValue("");
 			})
 			.catch((error) => {
-				setStatus("ERROR");
+				setStatus({
+					status: "ERROR",
+					message: error.message,
+				});
 				console.log(error);
 			});
 	};
+
+	console.log("status", status);
+
 	return (
 		<>
 			<form
@@ -65,7 +75,8 @@ function Form() {
 						type="email"
 						name="email"
 						id="email"
-						className="font-poppins font-light pl-12 shadow-md shadow-blue-500/50 block w-full rounded-xl border-0 px-4 py-4 md:text-md text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus-visible:outline focus:ring-2 focus:ring-inset focus:ring-indigo-600 text-sm sm:text-md sm:leading-7"
+						required
+						className="font-poppins font-light pl-12 shadow-md shadow-blue-500/50 block w-full rounded-xl border-0 px-4 py-4 md:text-md text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus-visible:outline focus:ring-2 focus:ring-inset focus:ring-indigo-600 text-sm sm:text-md sm:leading-6"
 						placeholder="Enter your email"
 						value={value}
 						onChange={(e) => setValue(e.target.value)}
@@ -79,14 +90,14 @@ function Form() {
 				>
 					Subscribe
 				</button>
-				{status === "SUCCESS" && (
-					<p className="text-green-500 text-center mt-2 block absolute top-full">
-						Thanks for subscribing! 🎉
+				{status.status === "SUCCESS" && (
+					<p className="text-green-500 text-center mt-2 block sm:absolute sm:top-full text-sm sm:text-lg sm:mt-4">
+						{"Thanks for subscribing! 🎉"}
 					</p>
 				)}
-				{status === "ERROR" && (
-					<p className="text-red-500 text-center mt-3 block absolute top-full">
-						Oops, something went wrong...
+				{status.status === "ERROR" && (
+					<p className="text-red-500 text-center mt-3 block sm:absolute sm:top-full text-sm sm:text-lg sm:mt-4">
+						{"Oops, something went wrong..."}
 					</p>
 				)}
 			</form>
