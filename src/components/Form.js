@@ -17,14 +17,19 @@ function Form() {
 			return;
 		}
 
-		const params = new URLSearchParams(formData);
-		axios.post(myForm.action, params).then((response) => {
-			if (response.status === 200) {
-				navigate("/success");
-			} else {
-				setError("Something went wrong...");
-			}
-		});
+		axios
+			.post("/", new URLSearchParams(formData).toString(), {
+				headers: {
+					"Content-Type": "application/x-www-form-urlencoded",
+				},
+			})
+			.then((response) => {
+				if (response.status === 200) {
+					navigate("/success");
+				} else {
+					setError("Something went wrong...");
+				}
+			});
 	};
 
 	return (
