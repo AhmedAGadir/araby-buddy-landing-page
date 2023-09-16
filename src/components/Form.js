@@ -10,13 +10,23 @@ function Form() {
 	const submit = (event) => {
 		event.preventDefault();
 
-		const emailValue = event.target.elements.email.value;
+		const formData = new FormData();
 
-		if (emailValue === "") {
-			return;
+		const formElements = event.target.elements;
+
+		for (let i = 0; i < formElements.length; i++) {
+			const element = formElements[i];
+
+			if (element.name) {
+				formData.append(element.name, element.value);
+			}
 		}
 
-		const params = new URLSearchParams({ email: emailValue }).toString();
+		const params = new URLSearchParams(formData).toString();
+
+		if (formData.get("email") === "") {
+			return;
+		}
 
 		axios
 			.post("/", params, {
