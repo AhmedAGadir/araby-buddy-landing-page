@@ -18,11 +18,8 @@ const TermsAndConditions = () => {
 				</p>
 				<p className="text-md text-slate-500 mb-6">
 					By using our platform, you agree to comply with and be bound by these
-					Terms and Conditions.
-				</p>
-				<p className="text-md text-slate-500 mb-6">
-					If you disagree with any part of these Terms and Conditions, then you
-					may not access our services.
+					Terms and Conditions. If you disagree with any part of these Terms and
+					Conditions, then you may not access our services.
 				</p>
 				<h2 className="text-2xl font-semibold mb-3">
 					Registration and User Accounts
