@@ -1,47 +1,43 @@
 import React, { useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 
-const defaultStatus = { status: "", message: "" };
+// const defaultStatus = { status: "", message: "" };
 
 function Form() {
 	const [value, setValue] = useState("");
-	const [status, setStatus] = useState({ ...defaultStatus });
+	// const [status, setStatus] = useState({ ...defaultStatus });
 
 	const submit = (e) => {
-		e.preventDefault();
-
-		if (!value) return;
-
-		setStatus({ ...defaultStatus });
-
-		const url =
-			process.env.NODE_ENV === "development"
-				? process.env.REACT_APP_DEV_NETLIFY_SERVERLESS_ENDPOINT
-				: "";
-
-		axios
-			.post(`${url}/.netlify/functions/subscribe`, { email: value })
-			.then((response) => {
-				if (response.status === 200) {
-					return response.data;
-				} else {
-					throw new Error("Something went wrong...");
-				}
-			})
-			.then((data) => {
-				setStatus({ status: "SUCCESS", message: data.message });
-				setValue("");
-			})
-			.catch((error) => {
-				setStatus({
-					status: "ERROR",
-					message: error.message,
-				});
-				console.log(error);
-			});
+		// e.preventDefault();
+		// if (!value) return;
+		// setStatus({ ...defaultStatus });
+		// const url =
+		// 	process.env.NODE_ENV === "development"
+		// 		? process.env.REACT_APP_DEV_NETLIFY_SERVERLESS_ENDPOINT
+		// 		: "";
+		// axios
+		// 	.post(`${url}/.netlify/functions/subscribe`, { email: value })
+		// 	.then((response) => {
+		// 		if (response.status === 200) {
+		// 			return response.data;
+		// 		} else {
+		// 			throw new Error("Something went wrong...");
+		// 		}
+		// 	})
+		// 	.then((data) => {
+		// 		setStatus({ status: "SUCCESS", message: data.message });
+		// 		setValue("");
+		// 	})
+		// 	.catch((error) => {
+		// 		setStatus({
+		// 			status: "ERROR",
+		// 			message: error.message,
+		// 		});
+		// 		console.log(error);
+		// 	});
 	};
 
-	console.log("status", status);
+	// console.log("status", status);
 
 	return (
 		<>
@@ -93,11 +89,11 @@ function Form() {
 						{"Thanks for subscribing! 🎉"}
 					</p>
 				)} */}
-				{status.status === "ERROR" && (
+				{/* {status.status === "ERROR" && (
 					<p className="text-red-500 text-center mt-3 block sm:absolute sm:top-full text-sm sm:text-lg sm:mt-4">
 						{"Oops, something went wrong..."}
 					</p>
-				)}
+				)} */}
 			</form>
 		</>
 	);
