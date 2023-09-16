@@ -12,7 +12,7 @@ const Success = () => {
 					We'll email you when we launch.
 					{/* In the meantime here a fun video to watch. */}
 				</p>
-				<GoBack className="inline-block" />
+				{/* <GoBack className="inline-block" /> */}
 			</main>
 		</div>
 	);
