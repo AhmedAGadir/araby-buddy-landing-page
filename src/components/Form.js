@@ -54,6 +54,8 @@ function Form() {
 				onSubmit={submit}
 				method="POST"
 				name="subscribe"
+				data-netlify="true"
+				netlify-honeypot="bot-field"
 			>
 				<input type="hidden" name="form-name" value="subscribe" />
 				<div hidden>
