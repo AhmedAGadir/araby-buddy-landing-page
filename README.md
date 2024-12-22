@@ -11,3 +11,5 @@ for debugging:
 - change env variable to development mode
 - run netlify dev
 - test with postman
+
+--test
