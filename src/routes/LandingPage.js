@@ -14,8 +14,9 @@ const LandingPage = () => {
 						alt="Araby Buddy Logo"
 						className="mx-auto mb-6 w-2/3 md:w-2/3"
 					/>
+					{/* Learn arabic through stories & conversation */}
 					<h1 className="font-poppins text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-center mb-6 text-slate-900">
-						Learn arabic through stories & conversation
+						Speak Arabic Confidently.
 					</h1>
 					<p className="text-slate-500 text-md md:text-lg text-center mb-6">
 						Join our newsletter to get notified when we launch. Don't worry, we
