@@ -3,7 +3,7 @@ export default function Footer() {
 		<footer className="pb-4 md:pb-6 font-poppins">
 			<div className="border-t border-grey/10 flex justify-between pt-4 px-3 lg:px-8">
 				<p className="text-xs leading-5 text-gray-500 font-light">
-					&copy; 2023 Gadir Tech Ltd. All rights reserved.
+					&copy; {new Date().getFullYear()} Gadir Tech Ltd. All rights reserved.
 				</p>
 
 				<div className="flex items-center space-x-4">
