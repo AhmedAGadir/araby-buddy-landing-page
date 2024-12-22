@@ -28,19 +28,23 @@ function Form() {
 			return;
 		}
 
-		axios
-			.post("/", params, {
-				headers: {
-					"Content-Type": "application/x-www-form-urlencoded",
-				},
-			})
-			.then((response) => {
-				if (response.status === 200) {
-					navigate("/success");
-				} else {
-					setError("Something went wrong...");
-				}
-			});
+		try {
+			axios
+				.post("/", params, {
+					headers: {
+						"Content-Type": "application/x-www-form-urlencoded",
+					},
+				})
+				.then((response) => {
+					if (response.status === 200) {
+						navigate("/success");
+					} else {
+						setError("Something went wrong...");
+					}
+				});
+		} catch (error) {
+			setError("Something went wrong...");
+		}
 	};
 
 	return (
